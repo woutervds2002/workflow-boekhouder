@@ -21,3 +21,18 @@ services:
     publishPath: src/build
     branch: main
     autoDeploy: true
+services:
+  - type: web
+    name: workflow-backend
+    env: node
+    buildCommand: npm install --prefix backend
+    startCommand: node backend/server.js
+    repo: https://github.com/woutervds2002/workflow-boekhouder
+    branch: main
+
+  - type: static
+    name: workflow-frontend
+    env: static
+    buildCommand: npm install --prefix frontend && npm run build --prefix frontend
+    publishPath: frontend/build
+    branch: main
